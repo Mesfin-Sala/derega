@@ -116,7 +116,7 @@ function VideoPlayer({
   }, []);
 
   useEffect(() => {
-    if (played === 1) {
+    if (played === 1 && onProgressUpdate) {
       onProgressUpdate({
         ...progressData,
         progressValue: played,
@@ -127,6 +127,7 @@ function VideoPlayer({
   return (
     <div
       ref={playerContainerRef}
+      onContextMenu={(e) => e.preventDefault()} // blocks right-click download
       className={`relative bg-gray-900 rounded-lg overflow-hidden shadow-2xl transition-all duration-300 ease-in-out 
       ${isFullScreen ? "w-screen h-screen" : ""}
       `}
@@ -143,7 +144,16 @@ function VideoPlayer({
         playing={playing}
         volume={volume}
         muted={muted}
+        controls={false} // explicitly disable native controls
         onProgress={handleProgress}
+        config={{
+          file: {
+            attributes: {
+              controlsList: "nodownload", // hide download button
+              disablePictureInPicture: true,
+            },
+          },
+        }}
       />
       {showControls && (
         <div

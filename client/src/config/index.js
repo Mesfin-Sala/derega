@@ -52,35 +52,99 @@ export const initialSignUpFormData = {
 
 export const languageOptions = [
   { id: "english", label: "English" },
-  { id: "spanish", label: "Spanish" },
-  { id: "french", label: "French" },
-  { id: "german", label: "German" },
-  { id: "chinese", label: "Chinese" },
-  { id: "japanese", label: "Japanese" },
-  { id: "korean", label: "Korean" },
-  { id: "portuguese", label: "Portuguese" },
-  { id: "arabic", label: "Arabic" },
-  { id: "russian", label: "Russian" },
+  { id: "amharic", label: "Amharic" },
+  { id: "afan-oromo", label: "AfanOromo" },
+  { id: "tigrinya", label: "Tigrinya" },
+  { id: "somali", label: "Somali" },
 ];
+
 
 export const courseLevelOptions = [
-  { id: "beginner", label: "Beginner" },
-  { id: "intermediate", label: "Intermediate" },
-  { id: "advanced", label: "Advanced" },
+  { id: "grade-1", label: "Grade 1" },
+  { id: "grade-2", label: "Grade 2" },
+  { id: "grade-3", label: "Grade 3" },
+  { id: "grade-4", label: "Grade 4" },
+  { id: "grade-5", label: "Grade 5" },
+  { id: "grade-6", label: "Grade 6" },
+  { id: "grade-7", label: "Grade 7" },
+  { id: "grade-8", label: "Grade 8" },
+  { id: "grade-9", label: "Grade 9" },
+  { id: "grade-10", label: "Grade 10" },
+  { id: "grade-11", label: "Grade 11" },
+  { id: "grade-12", label: "Grade 12" },
 ];
 
+
 export const courseCategories = [
-  { id: "web-development", label: "Web Development" },
-  { id: "backend-development", label: "Backend Development" },
-  { id: "data-science", label: "Data Science" },
-  { id: "machine-learning", label: "Machine Learning" },
-  { id: "artificial-intelligence", label: "Artificial Intelligence" },
-  { id: "cloud-computing", label: "Cloud Computing" },
-  { id: "cyber-security", label: "Cyber Security" },
-  { id: "mobile-development", label: "Mobile Development" },
-  { id: "game-development", label: "Game Development" },
-  { id: "software-engineering", label: "Software Engineering" },
+  {
+    id: "mathematics",
+    label: "Mathematics",
+    icon: "➕",
+    description: "Learn numbers and equations",
+  },
+  {
+    id: "english",
+    label: "English",
+    icon: "📖",
+    description: "Master the art of language",
+  },
+  {
+    id: "physics",
+    label: "Physics",
+    icon: "⚛️",
+    description: "Explore the laws of nature",
+  },
+  {
+    id: "chemistry",
+    label: "Chemistry",
+    icon: "🧪",
+    description: "Dive into the world of substances",
+  },
+  {
+    id: "biology",
+    label: "Biology",
+    icon: "🔬",
+    description: "Study living organisms",
+  },
+  {
+    id: "geography",
+    label: "Geography",
+    icon: "🗺️",
+    description: "Understand the Earth's landscapes",
+  },
+  {
+    id: "history",
+    label: "History",
+    icon: "📜",
+    description: "Learn about past events",
+  },
+  {
+    id: "economics",
+    label: "Economics",
+    icon: "💰",
+    description: "Explore how economies function",
+  },
+  {
+    id: "civics",
+    label: "Civics",
+    icon: "🏛️",
+    description: "Understand civic responsibilities",
+  },
+  {
+    id: "ict",
+    label: "ICT",
+    icon: "💻",
+    description: "Learn about information and communication technology",
+  },
+  {
+    id: "other",
+    label: "Other",
+    icon: "📚",
+    description: "Miscellaneous subjects",
+  },
 ];
+
+
 
 export const courseLandingPageFormControls = [
   {

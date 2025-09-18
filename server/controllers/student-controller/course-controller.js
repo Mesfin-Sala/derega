@@ -1,6 +1,9 @@
 const Course = require("../../models/Course");
 const StudentCourses = require("../../models/StudentCourses");
 
+// ===============================
+// Get All Student View Courses
+// ===============================
 const getAllStudentViewCourses = async (req, res) => {
   try {
     const {
@@ -10,9 +13,8 @@ const getAllStudentViewCourses = async (req, res) => {
       sortBy = "price-lowtohigh",
     } = req.query;
 
-    console.log(req.query, "req.query");
-
     let filters = {};
+
     if (category.length) {
       filters.category = { $in: category.split(",") };
     }
@@ -27,21 +29,16 @@ const getAllStudentViewCourses = async (req, res) => {
     switch (sortBy) {
       case "price-lowtohigh":
         sortParam.pricing = 1;
-
         break;
       case "price-hightolow":
         sortParam.pricing = -1;
-
         break;
       case "title-atoz":
         sortParam.title = 1;
-
         break;
       case "title-ztoa":
         sortParam.title = -1;
-
         break;
-
       default:
         sortParam.pricing = 1;
         break;
@@ -54,14 +51,17 @@ const getAllStudentViewCourses = async (req, res) => {
       data: coursesList,
     });
   } catch (e) {
-    console.log(e);
+    console.error(e);
     res.status(500).json({
       success: false,
-      message: "Some error occured!",
+      message: "Some error occurred!",
     });
   }
 };
 
+// ===============================
+// Get Student View Course Details
+// ===============================
 const getStudentViewCourseDetails = async (req, res) => {
   try {
     const { id } = req.params;
@@ -80,36 +80,52 @@ const getStudentViewCourseDetails = async (req, res) => {
       data: courseDetails,
     });
   } catch (e) {
-    console.log(e);
+    console.error(e);
     res.status(500).json({
       success: false,
-      message: "Some error occured!",
+      message: "Some error occurred!",
     });
   }
 };
 
+// ===============================
+// Check Course Purchase Info
+// ===============================
 const checkCoursePurchaseInfo = async (req, res) => {
   try {
     const { id, studentId } = req.params;
-    const studentCourses = await StudentCourses.findOne({
-      userId: studentId,
-    });
 
+    // Find the student's course record
+    const studentCourses = await StudentCourses.findOne({ userId: studentId });
+
+    // If no record found or no courses array, return false
+    if (!studentCourses || !studentCourses.courses) {
+      return res.status(200).json({
+        success: true,
+        data: false, // Student did not buy this course
+      });
+    }
+
+    // Check if this courseId exists in the student's courses array
     const ifStudentAlreadyBoughtCurrentCourse =
       studentCourses.courses.findIndex((item) => item.courseId === id) > -1;
-    res.status(200).json({
+
+    return res.status(200).json({
       success: true,
       data: ifStudentAlreadyBoughtCurrentCourse,
     });
   } catch (e) {
-    console.log(e);
+    console.error(e);
     res.status(500).json({
       success: false,
-      message: "Some error occured!",
+      message: "Some error occurred!",
     });
   }
 };
 
+// ===============================
+// Export Controllers
+// ===============================
 module.exports = {
   getAllStudentViewCourses,
   getStudentViewCourseDetails,
